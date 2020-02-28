@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Add Vehicle";
+    
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">" + ViewBag.Title + "</li>";
+}
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="card-shadow-warning border mb-3 card card-body border-warning">
+            <h5 class="card-title text-center">Add Vehicle Details</h5>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @{
+                        Html.RenderPartial("_VehicleForm");
+                    }
+
+                    <div class="form-group text-center">
+                        <div class="col-md-12">
+                            <input type="submit" value="Add Vehicle" class="btn btn-warning bg-sunny-morning btn-block" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

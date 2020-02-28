@@ -1,0 +1,94 @@
+﻿@model CabBooking.Models.AccountModel
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+
+    @Styles.Render("~/Content/css")
+</head>
+
+<body>
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="h-100 no-gutters row">
+                    <div class="d-none d-lg-block col-lg-4">
+                        <div class="slider-light">
+                            <div class="slick-slider">
+                                <div>
+                                    <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning " tabindex="-1">
+                                        <div class="text-center font-weight-bold">
+                                            <h3>Cab Booking Services</h3>
+                                            <p class="p-5">
+                                                By logging in to dashboard you can generate incoices
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
+                        <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
+                            <div class="app-logo"></div>
+                            <h4 class="mb-0">
+                                <span class="d-block">Welcome back,</span>
+                                <span>Please sign in to your account.</span>
+                            </h4>
+
+                            <div class="divider row"></div>
+                            @Html.Raw(ViewBag.Message)
+                            <div>
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="position-relative form-group">
+                                                @Html.LabelFor(model => model.UserName)
+                                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username" } })
+                                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="position-relative form-group">
+                                                @Html.LabelFor(model => model.Password)
+                                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="divider row"></div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-auto">
+                                            @*<a href="javascript:void(0);" class="btn-lg btn btn-link">Recover Password</a>*@
+                                            <button type="submit" class="btn btn-warning btn-lg bg-sunny-morning">Login to Dashboard</button>
+                                        </div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/main")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+
+

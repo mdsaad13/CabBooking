@@ -1,0 +1,159 @@
+﻿@model CabBooking.Models.TripModel
+
+@{
+    ViewBag.Title = "Add Trip";
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">" + ViewBag.Title + "</li>";
+}
+<link rel="stylesheet" href="~/Content/Plugins/daterangepicker.css" />
+<div class="row">
+    <div class="col-12 col-md-12">
+        <div class="card-shadow-warning border mb-3 card card-body border-warning">
+            <h5 class="card-title text-center">Add Vehicle Details</h5>
+            @{
+                if (Convert.ToInt32(Session["Notification"]) == 1)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Add trip error!</strong> An error unknown occured. <br />Please try again later
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    Session["Notification"] = null;
+                }
+            }
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.ClientName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ClientName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.VehicleID, htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.VehicleID, ViewBag.Vehicals as SelectList, "Select Category", new { @class = "custom-select" })
+                            @Html.ValidationMessageFor(model => model.VehicleID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.PickupLoc, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PickupLoc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PickupLoc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.DropLoc, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.DropLoc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DropLoc, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.DateIn, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.DateIn, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateIn, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.DateOut, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.DateOut, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.PickupTime, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.PickupTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                            @Html.ValidationMessageFor(model => model.PickupTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group">
+                            @Html.LabelFor(model => model.DropTime, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.DropTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                            @Html.ValidationMessageFor(model => model.DropTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <div class="col-md-12">
+                        <input type="submit" value="Add Vehicle" class="btn btn-warning bg-sunny-morning w-50" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/Plugins/moment.js"></script>
+    <script type="text/javascript" src="~/Content/Plugins/daterangepicker.js"></script>
+
+    <script>
+         // Date functions
+    $(function() {
+        $('input[name="DateIn"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 2000,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            opens: 'center',
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+        $('input[name="DateOut"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 2000,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            opens: 'center',
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+    });
+    </script>
+}
+
+

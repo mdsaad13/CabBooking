@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CabBooking.Models.TripModel>
+@{
+    ViewBag.Title = "Completed Trips";
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">" + ViewBag.Title + "</li>";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+
+<div class="row">
+    <div class="col-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="text-right card-title">
+                    <a href="@Url.Action("AddTrip")" class="btn mr-2 mb-2 btn-warning bg-sunny-morning">Add New Trip</a>
+                </div>
+                <table id="myTable" class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Trip ID</th>
+                            <th>Date of Invoice</th>
+                            <th>Client Name</th>
+                            <th>Total Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 1; }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TripID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateOfInvoice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClientName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GrandTotal)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("UpdateTrip", "Home", new { id = item.TripID })" class="text-primary">
+                                        <i class="icon-edit"></i>&nbsp;
+                                        Edit
+                                    </a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Trip ID</th>
+                            <th>Date of Invoice</th>
+                            <th>Client Name</th>
+                            <th>Total Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+}

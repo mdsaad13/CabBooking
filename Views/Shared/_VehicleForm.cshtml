@@ -1,0 +1,51 @@
+﻿@model CabBooking.Models.VehicleModel
+
+@Html.HiddenFor(model => model.VehicleID)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Drivername, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Drivername, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Drivername, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Regno, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Regno, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Regno, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Km, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Km, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Km, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group mb-4">
+    @Html.LabelFor(model => model.Extrahr, htmlAttributes: new { @class = "control-label col-md-12" })
+    <div class="col-md-12">
+        @Html.EditorFor(model => model.Extrahr, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Extrahr, "", new { @class = "text-danger" })
+    </div>
+</div>

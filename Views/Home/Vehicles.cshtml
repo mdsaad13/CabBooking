@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CabBooking.Models.VehicleModel>
+@{
+    ViewBag.Title = "Vehicles";
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">All Vehicles</li>";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
+
+<div class="row">
+    <div class="col-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="text-right card-title">
+                    <a href="@Url.Action("AddVehicle")" class="btn mr-2 mb-2 btn-warning bg-sunny-morning">Add Vehicle</a>
+                </div>
+                <table id="myTable" class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Driver Name</th>
+                            <th>Mobile</th>
+                            <th>Reg No.</th>
+                            <th>Vehicle Make</th>
+                            <th>Per km rate</th>
+                            <th>Rate per extra km</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 1; }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Drivername)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mobile)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Regno)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Type)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Km)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Extrahr)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("EditVehicle", "Home", new { id = item.VehicleID })" class="text-primary">
+                                        <i class="icon-edit"></i>
+                                        Edit
+                                    </a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>Driver Name</th>
+                            <th>Mobile</th>
+                            <th>Reg No.</th>
+                            <th>Vehicle Make</th>
+                            <th>Per km rate</th>
+                            <th>Rate per extra km</th>
+                            <th>Edit</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+}
