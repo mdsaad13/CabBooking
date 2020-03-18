@@ -1,0 +1,223 @@
+﻿@model CabBooking.Models.TripModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "View Trip";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.DisplayFor(model => model.TripID)</title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
+
+        .container {
+            border-collapse: collapse;
+            margin: 0 auto;
+            border-spacing: 0;
+            padding: 0;
+            height: 100% !important;
+            width: 100% !important;
+            font-weight: normal;
+            color: #212121;
+            font-size: 14px;
+            line-height: 1.4;
+            background: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            color: #434343;
+            text-align: left;
+            line-height: 16px;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            text-align: left;
+        }
+
+        .table-bordered {
+            border: 1px solid grey;
+        }
+
+            .table-bordered thead td,
+            .table-bordered thead th {
+                border-bottom-width: 2px;
+                padding: 5px
+            }
+
+            .table-bordered td,
+            .table-bordered th {
+                border: 1px solid grey;
+                padding: 5px
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div style="padding:5px 0">
+            <div style="text-align:center">
+                <h1>@ViewBag.SoftwareName</h1>
+                <p>SURANA COLLEGE<BR />BANGALORE - 560 004</p>
+            </div>
+        </div>
+        <div style="background:#e0e0e0;padding: 1px;"></div>
+        <div style="font-size: 18px;">
+            <p style="margin: 4px 0;">
+                TRIP NUMBER: <b>@Html.DisplayFor(model => model.TripID)</b>
+                <span style="float: right">Date: <b>@Model.DateOfInvoice.ToLongDateString()</b></span>
+            </p>
+        </div>
+        <table class="table-bordered" cellspacing="0">
+            <tr>
+                <th>Client name</th>
+                <td>@Model.ClientName.ToUpper()</td>
+                <th>Mobile number</th>
+                <td>@Model.Mobile</td>
+            </tr>
+            <tr>
+                <th>Pickup location</th>
+                <td>@Model.PickupLoc.ToUpper()</td>
+                <th>Drop Location</th>
+                <td>@Model.DropLoc.ToUpper()</td>
+            </tr>
+            <tr>
+                <th>Vehical Details</th>
+                <td>@ViewBag.VehicleDetails.Type.ToUpper(), @ViewBag.VehicleDetails.Regno.ToUpper()</td>
+                <th>Date of booking</th>
+                <td>@Model.DateOfBooking.ToLongDateString()</td>
+            </tr>
+        </table>
+        <br />
+        <table class="table-bordered" cellspacing="0">
+            <tr>
+                <th>Date in</th>
+                <td>@Model.DateIn.ToLongDateString()</td>
+                <th>Date out</th>
+                <td>@Model.DateOut.ToLongDateString()</td>
+                <th>Total days</th>
+                <td><b>@{ var totalDays = Model.DateOut - Model.DateIn; } @totalDays.TotalDays</b></td>
+            </tr>
+        </table>
+        <br />
+
+        <table cellspacing="0">
+            <tr>
+                <td style="width: 50%;vertical-align: top;">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>Rate per kilometer(@ViewBag.VehicleDetails.Km.ToString("C"))</th>
+                            <td>Extra kms: @Model.ExtraKm KMS</td>
+                        </tr>
+                        <tr>
+                            <th>Rate per extra hour(@ViewBag.VehicleDetails.Extrahr.ToString("C"))</th>
+                            <td>Extra hours: @Model.ExtraHr HRS</td>
+                        </tr>
+                        <tr>
+                            <th>Package charges</th>
+                            <td>@Model.PkgCharges.ToString("C")</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <table cellspacing="0" class="table-bordered">
+                        <tr>
+                            <th>Package details</th>
+                            <td colspan="2">@Model.PkgDetails</td>
+                        </tr>
+                        <tr>
+                            <th>Pick up</th>
+                            <td>KM: <b>@Model.PickupKm</b></td>
+                            <td>TIME: <b>@Model.PickupTime.ToString()</b></td>
+                        </tr>
+                        <tr>
+                            <th>Drop</th>
+                            <td>KM: <b>@Model.DropKm</b></td>
+                            <td>TIME: <b>@Model.DropTime</b></td>
+                        </tr>
+                        <tr>
+                            <th style="padding-top: 10px;">Total</th>
+                            <td>KM: <b>@{var totalKMS = Model.DropKm - Model.PickupKm;} @totalKMS KMS</b></td>
+                            <td>TIME: <b>@{ var totHRS = totalDays + (Model.PickupTime - Model.DropTime); } @totHRS.TotalHours HRS</b></td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="vertical-align: top;">
+                    <table cellspacing="0" class="table-bordered">
+                        <tr>
+                            <th style="width: 45%">Extra kilometer charges</th>
+                            <th>@{var ExtraKmCharges = ViewBag.VehicleDetails.Km * Model.ExtraKm; }@ExtraKmCharges.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th>Extra hour charges</th>
+                            <th>@{var ExtraHrCharges = ViewBag.VehicleDetails.Extrahr * Model.ExtraHr; }@ExtraHrCharges.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th>Toll & Parking</th>
+                            <th>@Model.Toll.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th>Night charges</th>
+                            <th>
+                                @{
+                                    // Night charges is 10% of total kms * rate per km of vehicle
+                                    var nightCharges = totalKMS * ViewBag.VehicleDetails.Km;
+                                    nightCharges = (nightCharges * 10) / 100;
+                                    @nightCharges.ToString("C")
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Package amount</th>
+                            <th>@Model.PkgCharges.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th>Driver bata</th>
+                            <th>@Model.Bata.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th>Intrastate tax</th>
+                            <th>@Model.IntraTax.ToString("C")</th>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 18px;">Total</th>
+                            <th style="font-size: 18px;">
+                                @{
+                                    var subTotal = ExtraKmCharges + ExtraHrCharges + Model.Toll + Model.PkgCharges + Model.Bata + Model.IntraTax + nightCharges;
+                                    @subTotal.ToString("C");
+                                }
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>CGST</th>
+                            <td>@Model.Cgst%</td>
+                        </tr>
+                        <tr>
+                            <th>SGST</th>
+                            <td>@Model.Sgst%</td>
+                        </tr>
+                        <tr>
+                            <th style="font-size: 20px;">Grand Total</th>
+                            <th style="font-size: 20px;">@Model.GrandTotal.ToString("C")</th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </div>
+</body>
+
+</html>

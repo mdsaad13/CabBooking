@@ -122,9 +122,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndexPageController.cs" />
     <Compile Include="Controllers\SessionAuthorize.cs" />
     <Compile Include="DAL\AccountUtil.cs" />
     <Compile Include="DAL\DbUtil.cs" />
+    <Compile Include="DAL\GeneralUtil.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,6 +136,58 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\IndexPageAssets\css\style.css" />
+    <Content Include="Content\IndexPageAssets\img\about.jpg" />
+    <Content Include="Content\IndexPageAssets\img\apple-touch-icon.png" />
+    <Content Include="Content\IndexPageAssets\img\favicon.png" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-1.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-2.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-3.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-4.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-5.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-6.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-7.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-8.jpg" />
+    <Content Include="Content\IndexPageAssets\img\portfolio\portfolio-9.jpg" />
+    <Content Include="Content\IndexPageAssets\img\slide\slide-1.jpg" />
+    <Content Include="Content\IndexPageAssets\img\slide\slide-2.jpg" />
+    <Content Include="Content\IndexPageAssets\img\slide\slide-3.jpg" />
+    <Content Include="Content\IndexPageAssets\img\team\team-1.jpg" />
+    <Content Include="Content\IndexPageAssets\img\team\team-2.jpg" />
+    <Content Include="Content\IndexPageAssets\img\team\team-3.jpg" />
+    <Content Include="Content\IndexPageAssets\img\team\team-4.jpg" />
+    <Content Include="Content\IndexPageAssets\js\main.js" />
+    <Content Include="Content\IndexPageAssets\js\validate.js" />
+    <Content Include="Content\IndexPageAssets\vendor\animate.css\animate.css" />
+    <Content Include="Content\IndexPageAssets\vendor\animate.css\animate.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\aos\aos.css" />
+    <Content Include="Content\IndexPageAssets\vendor\aos\aos.js" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\css\animations.css" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\css\boxicons.css" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\css\boxicons.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\css\transformations.css" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\fonts\boxicons.svg" />
+    <Content Include="Content\IndexPageAssets\vendor\counterup\counterup.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\icofont\icofont.min.css" />
+    <Content Include="Content\IndexPageAssets\vendor\isotope-layout\isotope.pkgd.js" />
+    <Content Include="Content\IndexPageAssets\vendor\isotope-layout\isotope.pkgd.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\jquery-sticky\jquery.sticky.js" />
+    <Content Include="Content\IndexPageAssets\vendor\jquery.easing\jquery.easing.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\jquery\jquery.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\venobox\venobox.css" />
+    <Content Include="Content\IndexPageAssets\vendor\venobox\venobox.js" />
+    <Content Include="Content\IndexPageAssets\vendor\venobox\venobox.min.js" />
+    <Content Include="Content\IndexPageAssets\vendor\waypoints\jquery.waypoints.min.js" />
     <Content Include="Content\Plugins\daterangepicker.css" />
     <Content Include="Content\Plugins\daterangepicker.js" />
     <Content Include="Content\Plugins\moment.js" />
@@ -149,6 +203,23 @@
     <Content Include="fonts\Pe-icon-7-stroke.eot" />
     <Content Include="fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\IndexPageAssets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\fonts\boxicons.eot" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\fonts\boxicons.ttf" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\fonts\boxicons.woff" />
+    <Content Include="Content\IndexPageAssets\vendor\boxicons\fonts\boxicons.woff2" />
+    <Content Include="Content\IndexPageAssets\vendor\icofont\fonts\icofont.woff" />
+    <Content Include="Content\IndexPageAssets\vendor\icofont\fonts\icofont.woff2" />
+    <Content Include="Content\IndexPageAssets\vendor\jquery\jquery.min.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -183,6 +254,12 @@
     <Content Include="Views\Home\AddTrip.cshtml" />
     <Content Include="Views\Home\PendingTrips.cshtml" />
     <Content Include="Views\Home\CompletedTrips.cshtml" />
+    <Content Include="Views\Home\UpdateTrip.cshtml" />
+    <Content Include="Views\Home\ViewTrip.cshtml" />
+    <Content Include="Views\IndexPage\Index.cshtml" />
+    <Content Include="Views\Home\Enquiries.cshtml" />
+    <Content Include="Views\Home\Reports.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

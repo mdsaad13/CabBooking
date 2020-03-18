@@ -10,7 +10,7 @@
                     <div class="widget-heading">Pending trips</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>1896</span></div>
+                    <div class="widget-numbers text-white"><span>@ViewBag.CountPendingTrips</span></div>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
                     <div class="widget-heading">Completed trips</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-dark"><span>568</span></div>
+                    <div class="widget-numbers text-dark"><span>@ViewBag.CountCompletedTrips</span></div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <div class="widget-heading">Total income</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-white"><span>₹46</span></div>
+                    <div class="widget-numbers text-white"><span>@ViewBag.SumTotalIncome.ToString("C")</span></div>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     <div class="widget-heading">Total vehicles</div>
                 </div>
                 <div class="widget-content-right">
-                    <div class="widget-numbers text-warning"><span>14</span></div>
+                    <div class="widget-numbers text-warning"><span>@ViewBag.CountVehicles</span></div>
                 </div>
             </div>
         </div>

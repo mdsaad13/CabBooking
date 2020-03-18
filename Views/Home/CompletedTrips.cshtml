@@ -33,18 +33,18 @@
                                     @Html.DisplayFor(modelItem => item.TripID)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DateOfInvoice)
+                                    @item.DateOfInvoice.ToLongDateString()
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ClientName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.GrandTotal)
+                                    @item.GrandTotal.ToString("C")
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("UpdateTrip", "Home", new { id = item.TripID })" class="text-primary">
+                                    <a href="@Url.Action("ViewTrip", "Home", new { id = item.TripID })" class="text-primary">
                                         <i class="icon-edit"></i>&nbsp;
-                                        Edit
+                                        View
                                     </a>
                                 </td>
                             </tr>

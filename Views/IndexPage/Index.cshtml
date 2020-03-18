@@ -1,0 +1,518 @@
+﻿@{
+    Layout = null;
+    ViewBag.SoftwareName = "Cab Booking";
+    ViewBag.Name = "Farjam Zafar";
+    ViewBag.Email = "farjamzafar@gmail.com";
+    ViewBag.Mobile = "+91 78921 03400";
+    ViewBag.Address = "16, S End Rd, Basavanagudi, Bengaluru, Karnataka 560004";
+
+    ViewData["twitter"] = "";
+    ViewData["facebook"] = "";
+    ViewData["instagram"] = "";
+    ViewData["linkedin"] = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewBag.SoftwareName</title>
+    <meta content="@ViewBag.SoftwareName" name="descriptison">
+    <meta content="@ViewBag.SoftwareName" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Content/IndexPageAssets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/IndexPageAssets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/Content/IndexPageAssets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Content/IndexPageAssets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/IndexPageAssets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="~/Content/IndexPageAssets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/Content/IndexPageAssets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Top Bar ======= -->
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container clearfix">
+            <div class="contact-info float-left">
+                <i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a>
+                <i class="icofont-phone"></i> @ViewBag.Mobile
+            </div>
+            <div class="social-links float-right">
+                <a href="@ViewData["twitter"]" class="twitter"><i class="icofont-twitter"></i></a>
+                <a href="@ViewData["facebook"]" class="facebook"><i class="icofont-facebook"></i></a>
+                <a href="@ViewData["instagram"]" class="instagram"><i class="icofont-instagram"></i></a>
+                <a href="@ViewData["linkedin"]" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container">
+
+            <div class="logo float-left">
+                <h1 class="text-light"><a href="@Url.Action("Index", "IndexPage")"><span class="bg-sunny-morning-text">@ViewBag.SoftwareName</span></a></h1>
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="#header">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Book Now!</a></li>
+                    <li>
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-dark text-warning">
+                            Admin Login
+                        </a>
+                    </li>
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+        <div class="hero-container">
+            <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+                <div class="carousel-inner" role="listbox">
+
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active" style="background-image: url('/Content/IndexPageAssets/img/slide/slide-1.jpg');">
+                        <div class="carousel-container">
+                            <div class="carousel-content container">
+                                <h2 class="animated fadeInDown">Welcome to <span>@ViewBag.SoftwareName</span></h2>
+                                <p class="animated fadeInUp">
+                                    A mission to deliver world class cab service experience.
+                                </p>
+                                <a href="#contact" class="btn-get-started animated fadeInUp scrollto">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-item" style="background-image: url('/Content/IndexPageAssets/img/slide/slide-2.jpg');">
+                        <div class="carousel-container">
+                            <div class="carousel-content container">
+                                <h2 class="animated fadeInDown">HASSLE-FREE BOOKINGS</h2>
+                                <p class="animated fadeInUp">
+                                    @ViewBag.SoftwareName offers a seamless and hassle-free booking process to ensure you enjoy doorstep pick-up on-time.
+                                </p>
+                                <a href="#contact" class="btn-get-started animated fadeInUp scrollto">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-item" style="background-image: url('/Content/IndexPageAssets/img/slide/slide-3.jpg');">
+                        <div class="carousel-container">
+                            <div class="carousel-content container">
+                                <h2 class="animated fadeInDown">ON-TIME PICK-UP</h2>
+                                <p class="animated fadeInUp">
+                                    @ViewBag.SoftwareName offers a seamless and hassle-free booking process to ensure you enjoy doorstep pick-up on-time.
+                                </p>
+                                <a href="#contact" class="btn-get-started animated fadeInUp scrollto">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+        </div>
+    </section><!-- End Hero -->
+
+    <main id="main">
+
+        <!-- ======= About Us Section ======= -->
+        <section id="about" class="about">
+            <div class="container">
+
+                <div class="row no-gutters">
+                    <div class="col-lg-6 video-box">
+                        <img src="~/Content/IndexPageAssets/img/about.jpg" class="img-fluid" alt="" style="filter: blur(4px);-webkit-filter: blur(4px);">
+                        <a href="https://www.youtube.com/watch?v=RkWDe9Bxi-Y" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                    </div>
+
+                    <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+                        <div class="section-title">
+                            <h2>About Us</h2>
+                            <p>
+                                @ViewBag.SoftwareName is a premier car rental company founded with a vision of becoming a leader in “Ground Transportation” for both personal and corporate travel. <br />
+                                @ViewBag.SoftwareName aims at offering the most comfortable, sought-after rides at the most affordable rates.
+                            </p>
+                        </div>
+
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="bx bx-pointer"></i></div>
+                            <h4 class="title">HASSLE-FREE BOOKINGS</h4>
+                            <p class="description">
+                                @ViewBag.SoftwareName offers a seamless and hassle-free booking process to ensure you enjoy doorstep pick-up on-time.
+                            </p>
+                        </div>
+
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="bx bx-timer"></i></div>
+                            <h4 class="title">ON-TIME PICK-UP</h4>
+                            <p class="description">
+                                @ViewBag.SoftwareName offers a seamless and hassle-free booking process to ensure you enjoy doorstep pick-up on-time.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End About Us Section -->
+        <!-- ======= Counts Section ======= -->
+        <section class="counts section-bg">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6 text-center" data-aos="fade-up">
+                        <div class="count-box">
+                            <i class="icofont-simple-smile text-success"></i>
+                            <span data-toggle="counter-up" class="text-success">96,400</span>
+                            <p>Happy Customers</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="count-box">
+                            <i class="icofont-car text-info"></i>
+                            <span data-toggle="counter-up" class="text-info">200</span>
+                            <p>Vehicles</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="count-box">
+                            <i class="icofont-road text-dark"></i>
+                            <span data-toggle="counter-up" class="text-dark">54,71,463</span>
+                            <p>Miles Travelled</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Counts Section -->
+        <!-- ======= Services Section ======= -->
+        <section id="services" class="services">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Services</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+                        <div class="icon"><i class="icofont-luggage"></i></div>
+                        <h4 class="title">Cab Rental and Tourism</h4>
+                        <p class="description">
+                            @ViewBag.SoftwareName operates 3 seaters, 4 seater, 7seater & 14 seater vehicles for your economical and luxurious outstation rides with your family, friends and relatives. @ViewBag.SoftwareName Provides a wide range of cab models & sizes to choose as per your convenient
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="icofont-airplane-alt"></i></div>
+                        <h4 class="title">Airport Transfer</h4>
+                        <p class="description">
+                            We offer the pick and drop facility from airports, which primarily aims to make it convenient for our guests to reach their destinations in a hassle free manner.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+                        <div class="icon"><i class="icofont-location-arrow"></i></div>
+                        <h4 class="title">Local Package</h4>
+                        <p class="description">
+                            Whether you need cab services for sightseeing, Event, Conference, Marriage, Party, or for corporate transformation, We provide you with cab service at a very affordable rate.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!-- End Services Section -->
+        <!-- ======= Our Portfolio Section ======= -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="section-title">
+                    <h2>Our Cabs</h2>
+                    <p>
+                        List of our cabs
+                    </p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul id="portfolio-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-5s">5 Seater</li>
+                            <li data-filter=".filter-7s">7 Seater</li>
+                            <li data-filter=".filter-12s">12 Seater</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row portfolio-container">
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-5s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/Dzire_New.png" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Swift Desire</h4>
+                                <p>5 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/Dzire_New.png" data-gall="portfolioGallery" class="venobox" title="Swift Desire"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-12s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/tt-1.png" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Tempo Traveller</h4>
+                                <p>12 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/tt-1.png" data-gall="portfolioGallery" class="venobox" title="Tata Indica"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-5s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/etios.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Etios</h4>
+                                <p>5 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/etios.jpg" data-gall="portfolioGallery" class="venobox" title="5 Seater"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-7s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/innova.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Innova</h4>
+                                <p>7 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/innova.jpg" data-gall="portfolioGallery" class="venobox" title="Innova"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-5s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/maruti-suzuki-dzire-gallant-red.png" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Swift Dzire</h4>
+                                <p>5 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/maruti-suzuki-dzire-gallant-red.png" data-gall="portfolioGallery" class="venobox" title="Swift Dzire"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-12s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/tt-2.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Tempo Traveller</h4>
+                                <p>12 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/tt-2.jpg" data-gall="portfolioGallery" class="venobox" title="Tempo Traveller"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-7s">
+                        <div class="portfolio-wrap">
+                            <img src="~/Content/IndexPageAssets/img/cars/New-Maruti-Ertiga.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Maruti Ertiga</h4>
+                                <p>7 Seater</p>
+                                <div class="portfolio-links">
+                                    <a href="~/Content/IndexPageAssets/img/cars/New-Maruti-Ertiga.jpg" data-gall="portfolioGallery" class="venobox" title="Maruti Ertiga"><i class="icofont-eye"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Our Portfolio Section -->
+        <!-- ======= Our Team Section ======= -->
+        <section id="team" class="team">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Our Team</h2>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-4 col-lg-4 col-md-6"></div>
+
+                    <div class="col-xl-4 col-lg-4 col-md-6" data-aos="fade-up">
+                        <div class="member">
+                            <div class="pic"><img src="~/Content/IndexPageAssets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                            <div class="member-info">
+                                <h4>@ViewBag.Name</h4>
+                                <span>Chief Executive Officer</span>
+                                <div class="social">
+                                    <a href=""><i class="icofont-twitter"></i></a>
+                                    <a href=""><i class="icofont-facebook"></i></a>
+                                    <a href=""><i class="icofont-instagram"></i></a>
+                                    <a href=""><i class="icofont-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </section><!-- End Our Team Section -->
+        <!-- ======= Contact Us Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
+                        <div class="info-box">
+                            <i class="bx bx-map"></i>
+                            <h3>Our Address</h3>
+                            <p>@ViewBag.Address</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                        <div class="info-box">
+                            <i class="bx bx-envelope"></i>
+                            <h3>Email Us</h3>
+                            <p>@ViewBag.Email</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                        <div class="info-box ">
+                            <i class="bx bx-phone-call"></i>
+                            <h3>Call Us</h3>
+                            <p>@ViewBag.Mobile</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+                        
+                        <form method="post" role="form" class="php-email-form">
+                            <h2 class="text-center">Book A Ride Now!!!</h2>
+                            <div class="form-row">
+                                <div class="col-12 form-group">
+                                    <input type="text" name="ClientName" class="form-control" id="ClientName" placeholder="Your Name" data-rule="regexp:([a-zA-Z ]{3,30})" data-msg="Enter a valid name" />
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-6 form-group">
+                                    <input type="text" class="form-control" name="Mobile" id="Mobile" placeholder="Your Mobile Number" data-rule="regexp:([6-9]{1})([0-9]{9})" data-msg="Enter a valid mobile number" />
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input type="email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-6 form-group">
+                                    <input type="text" class="form-control" name="PickupLoc" id="PickupLoc" placeholder="Pickup Location" data-rule="regexp:([a-zA-Z ]{3,30})" data-msg="Enter a valid Pick up location" />
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input type="text" class="form-control" name="DropLoc" id="DropLoc" placeholder="Drop Location" data-rule="regexp:([a-zA-Z ]{3,30})" data-msg="Enter a valid Drop location" />
+                                    <div class="validate"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="loading">Loading...</div>
+                                <div class="error-message"></div>
+                                <div class="sent-message">Thank you for booking :)! We'll get in touch with you shortly</div>
+                            </div>
+                            <div class="text-center"><button type="submit">Book Now</button></div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Us Section -->
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>@ViewBag.SoftwareName</span></strong>. All Rights Reserved
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Content/IndexPageAssets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/IndexPageAssets/js/validate.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/jquery-sticky/jquery.sticky.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/counterup/counterup.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/Content/IndexPageAssets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Content/IndexPageAssets/js/main.js"></script>
+
+</body>
+
+</html>

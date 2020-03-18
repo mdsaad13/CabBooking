@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+<div class="text-center">
+    <h1 class=" text-danger mb-4">
+        Opps :( @ViewBag.Error
+    </h1>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Return To Home</a>
+</div>
+

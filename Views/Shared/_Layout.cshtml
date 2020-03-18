@@ -130,7 +130,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="@Url.Action("Index", "Home")">
+                                        <a href="@Url.Action("AddTrip", "Home")">
                                             <i class="metismenu-icon">
                                             </i>Add Trip
                                         </a>
@@ -149,11 +149,18 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="app-sidebar__heading">Enquiries</li>
+                            <li>
+                                <a href="@Url.Action("Enquiries", "Home")">
+                                    <i class="metismenu-icon pe-7s-mail-open-file">
+                                    </i>Enquiries
+                                </a>
+                            </li>
                             <li class="app-sidebar__heading">Reports</li>
                             <li>
-                                <a href="@Url.Action("Index", "Home")">
+                                <a href="@Url.Action("Reports", "Home")">
                                     <i class="metismenu-icon pe-7s-graph2">
-                                    </i>Reports
+                                    </i>@DateTime.Now.ToString("MMMM") Report
                                 </a>
                             </li>
                         </ul>

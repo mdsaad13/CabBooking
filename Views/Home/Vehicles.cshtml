@@ -44,10 +44,10 @@
                                     @Html.DisplayFor(modelItem => item.Type)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Km)
+                                    @item.Km.ToString("C")
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Extrahr)
+                                    @item.Extrahr.ToString("C")
                                 </td>
                                 <td>
                                     <a href="@Url.Action("EditVehicle", "Home", new { id = item.VehicleID })" class="text-primary">

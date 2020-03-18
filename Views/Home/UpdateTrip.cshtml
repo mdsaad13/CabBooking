@@ -1,0 +1,513 @@
+﻿@model CabBooking.Models.TripModel
+
+@{
+    ViewBag.Title = "Update Trip";
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">" + ViewBag.Title + "</li>";
+}
+
+<link rel="stylesheet" href="~/Content/Plugins/daterangepicker.css" />
+<style>
+    .total-bg {
+        background: #e9e9e9;
+        border-radius: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <!-- /.card-header -->
+            <!-- form start -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="card-body">
+                    <div class="row">
+                        <!-- left side -->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.TripID, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.TripID, new { htmlAttributes = new { @class = "form-control-plaintext font-weight-bold", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.TripID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.ClientName, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.ClientName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ClientName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PickupLoc, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.PickupLoc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PickupLoc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.VehicleID, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.DropDownListFor(model => model.VehicleID, ViewBag.Vehicals as SelectList, "Select Category", new { @class = "custom-select" })
+                                    @Html.ValidationMessageFor(model => model.VehicleID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DateIn, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.DateIn, new { @Value = Model.DateIn.ToString("yyyy/MM/dd"), @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DateIn, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.DateOut, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.DateOut, new { @Value = Model.DateOut.ToString("yyyy/MM/dd"), @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DateOut, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-4 col-form-label">
+                                    Rate per kilometer(₹<span id="rateExtraKm">0</span>)
+                                </label>
+                                @Html.LabelFor(model => model.ExtraKm, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                                <div class="input-group col-sm-5">
+                                    @Html.EditorFor(model => model.ExtraKm, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ExtraKm, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">kms</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-4 col-form-label">
+                                    Rate per extra hour(₹<span id="rateExtraHr">0</span>)
+                                </label>
+                                @Html.LabelFor(model => model.ExtraHr, htmlAttributes: new { @class = "col-sm-3 col-form-label" })
+                                <div class="input-group col-sm-5">
+                                    @Html.EditorFor(model => model.ExtraHr, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ExtraHr, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Hrs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PkgDetails, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.PkgDetails, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PkgDetails, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.PkgCharges, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">₹</span>
+                                    </div>
+                                    @Html.EditorFor(model => model.PkgCharges, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PkgCharges, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-4 col-form-label">Pick up</label>
+                                <div class="input-group col-sm-4">
+                                    @Html.EditorFor(model => model.PickupKm, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PickupKm, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">km</span>
+                                    </div>
+                                </div>
+                                <div class="input-group col-sm-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nav-icon fas fa-clock"></i></span>
+                                    </div>
+                                    @Html.EditorFor(model => model.PickupTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                                    @Html.ValidationMessageFor(model => model.PickupTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-4 col-form-label">Drop</label>
+                                <div class="input-group col-sm-4">
+                                    @Html.EditorFor(model => model.DropKm, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DropKm, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">km</span>
+                                    </div>
+                                </div>
+                                <div class="input-group col-sm-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="nav-icon fas fa-clock"></i></span>
+                                    </div>
+                                    @Html.EditorFor(model => model.DropTime, new { htmlAttributes = new { @class = "form-control", @type = "time" } })
+                                    @Html.ValidationMessageFor(model => model.DropTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row total-bg">
+                                <label for="" class="col-sm-4 col-form-label">Total</label>
+                                <div class="input-group col-sm-4">
+                                    <input type="text" readonly class="form-control-plaintext" id="totalkm" placeholder="0" name="" value="0 kms" style="font-weight: bold;">
+                                </div>
+                                <div class="input-group col-sm-4">
+                                    <input type="text" readonly class="form-control-plaintext" id="totaltime" placeholder="0" name="" value="0 hrs" style="font-weight: bold;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right section -->
+                        <div class="col-6">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DropLoc, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.DropLoc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DropLoc, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.DateOfBooking, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.DateOfBooking, new { @Value = Model.DateOfBooking.ToString("yyyy/MM/dd"), @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.DateOfBooking, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="totalDays" class="col-sm-4 col-form-label">Total days</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="totalDays" value="0" name="" style="font-weight: bold;">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="extraKmCharges" class="col-sm-4 col-form-label">Extra km charges</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="extraKmCharges" value="0" name="" style="font-weight: bold;">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="extraKmCharges" class="col-sm-4 col-form-label">Extra hr charges</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="extraHrCharges" value="0" name="" style="font-weight: bold;">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Toll, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">₹</span>
+                                    </div>
+                                    @Html.EditorFor(model => model.Toll, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Toll, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.NightCharges, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.NightCharges, new { htmlAttributes = new { @class = "form-control-plaintext font-weight-bold" } })
+                                    @Html.ValidationMessageFor(model => model.NightCharges, "", new { @class = "text-danger", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="packAmt" class="col-sm-4 col-form-label">Package amount</label>
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.PkgCharges, new { htmlAttributes = new { @class = "form-control-plaintext font-weight-bold", @readonly = "readonly", @id = "packAmt" } })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Bata, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">₹</span>
+                                    </div>
+                                    @Html.EditorFor(model => model.Bata, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Bata, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.IntraTax, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">₹</span>
+                                    </div>
+                                    @Html.EditorFor(model => model.IntraTax, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.IntraTax, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row total-bg">
+                                <label for="totalAmt" class="col-sm-4 col-form-label font-weight-bold">Total</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control-plaintext" id="totalAmt" value="0.00" name="" style="font-weight: bold;">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Cgst, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    @Html.EditorFor(model => model.Cgst, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Cgst, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.Sgst, htmlAttributes: new { @class = "col-sm-4 col-form-label" })
+                                <div class="input-group col-sm-8">
+                                    @Html.EditorFor(model => model.Sgst, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Sgst, "", new { @class = "text-danger" })
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row total-bg">
+                                @Html.LabelFor(model => model.GrandTotal, htmlAttributes: new { @class = "col-sm-4 col-form-label font-weight-bold" })
+                                <div class="col-sm-8">
+                                    @Html.EditorFor(model => model.GrandTotal, new { htmlAttributes = new { @class = "form-control-plaintext font-weight-bold" } })
+                                    @Html.ValidationMessageFor(model => model.GrandTotal, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="" value="0" id="rpk">
+                    <input type="hidden" name="" value="0" id="rph">
+                </div>
+                <div class="col-6">
+                    <button type="button" class="btn btn-danger" id="deleteTrip">Delete Trip</button>
+                </div>
+                <div class="card-footer">
+                    <div class="text-center col-12">
+                        <button type="submit" class="btn btn-primary w-50" name="updateTrip">Finish Trip</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Content/Plugins/moment.js"></script>
+    <script type="text/javascript" src="~/Content/Plugins/daterangepicker.js"></script>
+
+    <script>
+
+        // Date functions
+        $(document).ready(function () {
+            // Initializing datepicker
+            $('input[name="DateIn"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2000,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                opens: 'center',
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+            $('input[name="DateOut"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2000,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                opens: 'center',
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+            $('input[name="DateOfBooking"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2000,
+                maxYear: parseInt(moment().format('YYYY'), 10),
+                opens: 'center',
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            });
+
+            fetchVehicalType();
+            extrakm();
+            extrahr();
+            totalKms();
+            totalDays();
+            nightCharges();
+            grandTotal();
+            totalHours();
+
+            function totalDays() {
+                var start = moment($('#DateIn').val());
+                var end = moment($('#DateOut').val());
+
+                // end - start returns difference in milliseconds
+                var diff = new Date(end - start);
+
+                // get days
+                var days = diff / 1000 / 60 / 60 / 24;
+                $('#totalDays').val(days);
+                totalHours();
+            }
+
+            function totalHours() {
+                var start = moment($('#DateIn').val() + ' ' + $('#PickupTime').val());
+                var end = moment($('#DateOut').val() + ' ' + $('#DropTime').val());
+                // end - start returns difference in milliseconds
+                var diff = new Date(end - start);
+
+                // get days
+                var days = diff / 1000 / 60 / 60;
+                // console.log(days + +$('#extrahr').val());
+                var totalHours = days + +$('#ExtraHr').val();
+
+                $('#totaltime').val(totalHours.toFixed(2) + ' hrs');
+            }
+            // kilometers calc
+            function totalKms() {
+                $('#totalkm').val(
+                    $('#DropKm').val() - $('#PickupKm').val() + ' kms'
+                );
+            }
+
+
+            // Calculate night charges
+            function nightCharges() {
+                // var nightCharges = $('#nightCharges').val();
+                var totalkm = $('#totalkm').val();
+                // var res = str.replace(" kms", "");
+                totalkm = totalkm.replace(" kms", "");
+                var rpk = $('#rpk').val();
+                var nightCharges = totalkm * rpk;
+                $('#NightCharges').val((nightCharges * 10) / 100);
+                // alert(rpk)
+                grandTotal();
+            }
+            // Extra kilometer calculation
+            function extrakm() {
+                var a = $('#rpk').val();
+                var b = $("#ExtraKm").val();
+                $('#extraKmCharges').val(a * b);
+                grandTotal();
+            }
+            // Extra hour calculation
+            function extrahr() {
+                var a = $('#rph').val(); // Value of rate per hr
+                var b = $("#ExtraHr").val();
+                // var rpk = ;
+                $('#extraHrCharges').val(a * b);
+                grandTotal();
+            }
+            // grand total
+            function grandTotal() {
+                var extraHrCharges = $('#extraHrCharges').val();
+                var extraKmCharges = $('#extraKmCharges').val();
+                var toll = $('#Toll').val();
+                var intrastatetax = $('#IntraTax').val();
+                var bata = $('#Bata').val();
+                var nightCharges = $('#NightCharges').val();
+                var packAmt = $('#packAmt').val();
+                var cgstValue = $('#Cgst').val();
+                var sgstValue = $('#Sgst').val();
+
+                var sum = +extraHrCharges + +extraKmCharges + +toll + +intrastatetax + +bata + +nightCharges + +packAmt;
+                // $span.numberAnimate();
+                // GST calculation
+                // Formula: GST Amount = ( Original Cost * GST% ) / 100
+                var cgst = (sum * cgstValue) / 100;
+                var sgst = (sum * sgstValue) / 100;
+                var total = sum + cgst + sgst;
+
+                $('#totalAmt').val(sum.toFixed(2));
+                $('#GrandTotal').val(total.toFixed(2));
+                $('#grandtotalHidden').val(total.toFixed(2));
+            }
+
+            function fetchVehicalType() {
+                var id = $('#VehicleID').val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/FetchVehicalType",
+                    data: {
+                        id: id
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        // alert(data);
+                        $('#rateExtraKm').text(data.rpk);
+                        $('#rateExtraHr').text(data.rph);
+                        $('#rpk').val(data.rpk);
+                        $('#rph').val(data.rph);
+                        nightCharges();
+                        extrakm();
+                        extrahr();
+                    }
+                });
+            }
+
+            $("#DateIn").blur(function () {
+                totalDays();
+            });
+            $("#DateOut").blur(function () {
+                totalDays();
+            });
+            // Fetch vehical type details
+            $('#VehicleID').change(function () {
+                fetchVehicalType();
+            });
+            $("#ExtraKm").blur(function () {
+                extrakm();
+            });
+            $("#ExtraHr").blur(function () {
+                extrahr();
+                totalHours();
+            });
+            $("#Toll").blur(function () {
+                grandTotal();
+            });
+            $("#Bata").blur(function () {
+                grandTotal();
+            });
+            $("#IntraTax").blur(function () {
+                grandTotal();
+            });
+            $("#Cgst").blur(function () {
+                grandTotal();
+            });
+            $("#Sgst").blur(function () {
+                grandTotal();
+            });
+            $("#PickupTime").blur(function () {
+                totalHours();
+            });
+            $("#DropTime").blur(function () {
+                totalHours();
+            });
+            $("#PickupKm").blur(function () {
+                totalKms();
+                nightCharges();
+            });
+            $("#DropKm").blur(function () {
+                totalKms();
+                nightCharges();
+            });
+            $("#PkgCharges").blur(function () {
+                $("#packAmt").val($("#PkgCharges").val());
+                grandTotal();
+            });
+
+        });
+    </script>
+}

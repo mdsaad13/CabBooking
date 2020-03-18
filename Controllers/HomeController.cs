@@ -18,6 +18,11 @@ namespace CabBooking.Controllers
 
         public ActionResult Index()
         {
+            GeneralUtil generalUtil = new GeneralUtil();
+            ViewBag.CountPendingTrips = generalUtil.CountByArgs("trip", "status = 1");
+            ViewBag.CountCompletedTrips = generalUtil.CountByArgs("trip", "status = 2");
+            ViewBag.SumTotalIncome = generalUtil.SumByArgs("trip", "grandtotal", "status = 2");
+            ViewBag.CountVehicles = generalUtil.Count("vehicle");
             return View();
         }
         
@@ -79,13 +84,31 @@ namespace CabBooking.Controllers
         // Vehicle methods ENDS here
 
         // Trip methods STARTS here
-        public ActionResult AddTrip()
+        
+        [HttpGet]
+        public ActionResult AddTrip(int id = 0) // Making `id` optional parameter
         {
             DbUtil dbUtil = new DbUtil();
-
+            GeneralUtil generalUtil = new GeneralUtil();
             ViewBag.Vehicals = new SelectList(dbUtil.GetVehicles(), "vehicleID", "regno");
 
-            return View();
+            if (id != 0)
+            {
+                if (generalUtil.Validate("enquirys", "id", Convert.ToString(id)))
+                {
+                    TripModel tripModel = dbUtil.GetEnquiryByID(id);
+                    return View(tripModel);
+                }
+                else
+                {
+                    ViewBag.Error = "Enquiry not found";
+                    return View("Error");
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [ValidateAntiForgeryToken]
@@ -113,6 +136,7 @@ namespace CabBooking.Controllers
         {
             DbUtil dbUtil = new DbUtil();
             TripModel tripModel = dbUtil.GetTripByID(id);
+            ViewBag.Vehicals = new SelectList(dbUtil.GetVehicles(), "vehicleID", "regno");
             return View(tripModel);
         }
 
@@ -120,7 +144,36 @@ namespace CabBooking.Controllers
         [HttpPost]
         public ActionResult UpdateTrip(TripModel tripModel)
         {
+            DbUtil dbUtil = new DbUtil();
+
+            tripModel.DateOfInvoice = DateTime.Now;
+            tripModel.Status = 2;
+
+            if (dbUtil.Updatetrip(tripModel))
+            {
+                RedirectToAction("CompletedTrips");
+            }
+            else
+            {
+                Session["Notification"] = 1;
+            }
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult FetchVehicalType(FormCollection formCollection)
+        {
+            DbUtil dbUtil = new DbUtil();
+            try
+            {
+                int VehicleID = Convert.ToInt32(formCollection["id"]);
+                VehicleModel vehicleModel = dbUtil.GetVehicleByID(VehicleID);
+                return Json(new { rpk = vehicleModel.Km, rph = vehicleModel.Extrahr });
+            }
+            catch
+            {
+                return Json(new { rpk = 0, rph = 0 });
+            }
         }
         // Trip methods ENDS here
 
@@ -138,6 +191,34 @@ namespace CabBooking.Controllers
             List<TripModel> details = dbUtil.GetCompletedTrips();
             return View(details);
         }
+        
+        [HttpGet]
+        public ActionResult ViewTrip(int id)
+        {
+            DbUtil dbUtil = new DbUtil();
+            TripModel tripModel = dbUtil.GetTripByID(id);
+            ViewBag.VehicleDetails = dbUtil.GetVehicleByID(tripModel.VehicleID);
+            return View(tripModel);
+        }
+
         // View Trip methods ENDS here
+
+        public ActionResult Enquiries()
+        {
+            DbUtil dbUtil = new DbUtil();
+            List<TripModel> details = dbUtil.GetEnquiryList();
+            return View(details);
+        }
+        
+        public ActionResult Reports()
+        {
+            return View();
+        }
+        
+        public ActionResult Error()
+        {
+            return View();
+        }
+
     }
 }

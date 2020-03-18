@@ -77,71 +77,71 @@ namespace CabBooking.Models
         public int Status { get; set; }
 
 
-        public float GrandTotal { get; set; }
+        public double GrandTotal { get; set; }
 
 
         [Display(Name = "Extra KM")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Extra KM")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float ExtraKm { get; set; }
+        public double ExtraKm { get; set; }
 
 
         [Display(Name = "Extra hours")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Extra hours")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float ExtraHr { get; set; }
+        public double ExtraHr { get; set; }
 
 
         [Display(Name = "Package Charges")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Package Charges")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float PkgCharges { get; set; }
+        public double PkgCharges { get; set; }
 
 
         [Display(Name = "Package name")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Package name")]
         public string PkgDetails { get; set; }
 
 
         [Display(Name = "Pickup KM")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Pickup KM")]
         [RegularExpression(@"^(\d)*\d*$", ErrorMessage = "Enter a valid number")]
         public long PickupKm { get; set; }
 
 
         [Display(Name = "Drop KM")]
-        [Required(ErrorMessage = "Enter Drop Time")]
+        [Required(ErrorMessage = "Enter Drop KM")]
         [RegularExpression(@"^(\d)*\d*$", ErrorMessage = "Enter a valid number")]
         public long DropKm { get; set; }
 
 
         [Display(Name = "Toll Charges")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float Toll { get; set; }
+        public double Toll { get; set; }
 
 
         [Display(Name = "Night Charges")]
-        public float NightCharges { get; set; }
+        public double NightCharges { get; set; }
 
 
         [Display(Name = "Driver Bata")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float Bata { get; set; }
+        public double Bata { get; set; }
 
 
         [Display(Name = "Intrastate Tax")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float IntraTax { get; set; }
+        public double IntraTax { get; set; }
 
 
         [Display(Name = "CGST")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float Cgst { get; set; }
+        public double Cgst { get; set; }
 
 
         [Display(Name = "SGST")]
         [RegularExpression(@"^(?:[1-9]\d*|0)?(?:\.\d+)?$", ErrorMessage = "Enter a valid number")]
-        public float Sgst { get; set; }
+        public double Sgst { get; set; }
 
     }
 }
