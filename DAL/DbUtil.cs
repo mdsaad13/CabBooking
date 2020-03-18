@@ -332,6 +332,26 @@ namespace CabBooking.DAL
             return tripModel;
 
         }
+
+        internal void DeleteEnquiry(int id)
+        {
+            try
+            {
+                string query = "DELETE from enquirys where id = @id";
+                SqlCommand cmd = new SqlCommand(query, Conn);
+                cmd.Parameters.Add(new SqlParameter("@id", id));
+                Conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                Conn.Close();
+            }
+        }
         
         internal TripModel GetTripByID(int id)
         {
@@ -470,6 +490,51 @@ namespace CabBooking.DAL
                 }
             }
             catch (Exception)
+            { }
+            finally
+            {
+                Conn.Close();
+            }
+            return list;
+        }
+        
+        internal List<TripModel> GetTripsByArgs(string Args)
+        {
+            DataTable td = new DataTable();
+            List<TripModel> list = new List<TripModel>();
+            try
+            {
+                string sqlquery = "SELECT * FROM trip WHERE "+ Args;
+                SqlCommand cmd = new SqlCommand(sqlquery, Conn);
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                Conn.Open();
+                adp.Fill(td);
+
+                foreach (DataRow row in td.Rows)
+                {
+                    TripModel tripModel = new TripModel
+                    {
+                        TripID = Convert.ToInt32(row["tripID"]),
+                        ClientName = Convert.ToString(row["clientname"]),
+                        Mobile = Convert.ToString(row["mobile"]),
+                        Email = Convert.ToString(td.Rows[0]["email"]),
+                        PickupLoc = Convert.ToString(row["pickuploc"]),
+                        DropLoc = Convert.ToString(row["droploc"]),
+                        VehicleID = Convert.ToInt32(row["vehicleID"]),
+                        DateOfBooking = Convert.ToDateTime(row["dateofbooking"]),
+                        DateOfInvoice = (!DBNull.Value.Equals(row["grandtotal"])) ? Convert.ToDateTime(row["dateofinvoice"]) : DateTime.Now,
+                        DateIn = Convert.ToDateTime(row["datein"]),
+                        DateOut = Convert.ToDateTime(row["dateout"]),
+                        PickupTime = TimeSpan.Parse(Convert.ToString(row["pickuptime"])),
+                        DropTime = TimeSpan.Parse(Convert.ToString(row["droptime"])),
+                        Status = Convert.ToInt32(row["status"]),
+                        GrandTotal = (!DBNull.Value.Equals(row["grandtotal"]))?Convert.ToInt64(row["grandtotal"]):0,
+                    };
+
+                    list.Add(tripModel);
+                }
+            }
+            catch (Exception ex)
             { }
             finally
             {

@@ -144,4 +144,10 @@ namespace CabBooking.Models
         public double Sgst { get; set; }
 
     }
+
+    public class TripBundle
+    {
+        public List<TripModel> BundleA { get; set; }
+        public List<TripModel> BundleB { get; set; }
+    }
 }

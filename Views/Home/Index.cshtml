@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CabBooking.Models.TripBundle
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -53,6 +54,117 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 col-md-6"></div>
-    <div class="col-12 col-md-6"></div>
+    <div class="col-12 col-md-6">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="card-title text-center" style="text-transform: unset;">
+                    <h4>Upcomming Trips</h4>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Trip ID</th>
+                            <th>Client Name</th>
+                            <th>Pickup Location</th>
+                            <th style="width: 20px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 1;
+                        }
+                        @if (Model.BundleA.Count > 0)
+                        {
+                            foreach (var Upcomming in Model.BundleA)
+                            {
+                                <tr>
+                                    <th scope="row">@i</th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Upcomming.TripID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Upcomming.ClientName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Upcomming.PickupLoc)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateTrip", "Home", new { id = Upcomming.TripID })" class="text-primary">
+                                            Update
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-danger" colspan="5">
+                                    NO RECORDS FOUND
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="card-title text-center" style="text-transform: unset;">
+                    <h4>Ongoing Trips</h4>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Trip ID</th>
+                            <th>Client Name</th>
+                            <th>Drop Location</th>
+                            <th style="width: 20px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            i = 1;
+                        }
+                        @if (Model.BundleB.Count > 0)
+                        {
+                            foreach (var Ongoing in Model.BundleB)
+                            {
+                                <tr>
+                                    <th scope="row">@i</th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Ongoing.TripID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Ongoing.ClientName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Ongoing.DropLoc)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("UpdateTrip", "Home", new { id = Ongoing.TripID })" class="text-primary">
+                                            Update
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-danger" colspan="5">
+                                    NO RECORDS FOUND
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

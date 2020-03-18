@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CabBooking.Controllers
 {
-    //[SessionAuthorize]
+    [SessionAuthorize]
     public class HomeController : Controller
     {
         public HomeController()
@@ -19,11 +19,21 @@ namespace CabBooking.Controllers
         public ActionResult Index()
         {
             GeneralUtil generalUtil = new GeneralUtil();
+            DbUtil dbUtil = new DbUtil();
+            string Date = DateTime.Now.ToString("yyyy-MM-dd");
+
             ViewBag.CountPendingTrips = generalUtil.CountByArgs("trip", "status = 1");
             ViewBag.CountCompletedTrips = generalUtil.CountByArgs("trip", "status = 2");
             ViewBag.SumTotalIncome = generalUtil.SumByArgs("trip", "grandtotal", "status = 2");
             ViewBag.CountVehicles = generalUtil.Count("vehicle");
-            return View();
+
+            TripBundle tripBundle = new TripBundle
+            {
+                BundleA = dbUtil.GetTripsByArgs("status = 1 AND datein < '" + Date+"'"),
+                BundleB = dbUtil.GetTripsByArgs("status = 1 AND datein > '" + Date + "'")
+            };
+
+            return View(tripBundle);
         }
         
         public ActionResult Vehicles()
@@ -97,6 +107,8 @@ namespace CabBooking.Controllers
                 if (generalUtil.Validate("enquirys", "id", Convert.ToString(id)))
                 {
                     TripModel tripModel = dbUtil.GetEnquiryByID(id);
+                    tripModel.TripID = id;
+                    tripModel.Status = 5;
                     return View(tripModel);
                 }
                 else
@@ -115,6 +127,15 @@ namespace CabBooking.Controllers
         [HttpPost]
         public ActionResult AddTrip(TripModel tripModel)
         {
+            bool DeleteEnqAction = false;
+            int EnqID = 0;
+            
+            if (tripModel.Status == 5)
+            {
+                EnqID = tripModel.TripID;
+                DeleteEnqAction = true;
+            }
+
             tripModel.TripID = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             tripModel.Status = 1;
             tripModel.DateOfBooking = DateTime.Now;
@@ -122,6 +143,11 @@ namespace CabBooking.Controllers
             DbUtil db = new DbUtil();
             if (db.InsertTrip(tripModel))
             {
+                if (DeleteEnqAction)
+                {
+                    DbUtil dbUtil = new DbUtil();
+                    dbUtil.DeleteEnquiry(EnqID);
+                }
                 RedirectToAction("PendingTrips");
             }
             else
@@ -212,7 +238,31 @@ namespace CabBooking.Controllers
         
         public ActionResult Reports()
         {
-            return View();
+            DbUtil dbUtil = new DbUtil();
+            string Date = DateTime.Now.ToString("yyyy-MM");
+            ViewBag.SortedName = DateTime.Now.ToString("MMMM");
+            List<TripModel> Trips = dbUtil.GetTripsByArgs("status = 2 AND dateofinvoice LIKE '"+ Date + "%'");
+            return View(Trips);
+        }
+        
+        [HttpPost]
+        public ActionResult Reports(FormCollection formCollection)
+        {
+            //+-+
+            string FormData = Convert.ToString(formCollection["sort"]);
+
+            DateTime FromDate = Convert.ToDateTime(FormData.Substring(0, 10));
+            DateTime ToDate = Convert.ToDateTime(FormData.Substring(13));
+
+            string StrFromDate = FromDate.ToString("yyyy-MM-dd");
+            string StrToDate = ToDate.ToString("yyyy-MM-dd");
+
+            ViewBag.SortedName = FromDate.ToString("dd-MMMM-yyyy")+ " TO "+ ToDate.ToString("dd-MMMM-yyy");
+
+            DbUtil dbUtil = new DbUtil();
+
+            List<TripModel> Trips = dbUtil.GetTripsByArgs("status = 2 AND dateofinvoice >= '" + StrFromDate + "' AND dateofinvoice <= '" + StrToDate + "'");
+            return View(Trips);
         }
         
         public ActionResult Error()

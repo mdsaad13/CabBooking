@@ -1,7 +1,98 @@
-﻿
+﻿@model IEnumerable<CabBooking.Models.TripModel>
 @{
     ViewBag.Title = "Reports";
+    ViewBag.Breadcrums = @"<li class=""breadcrumb-item active"" aria-current=""page"">" + ViewBag.Title + "</li>";
 }
+<link rel="stylesheet" href="~/Content/Plugins/daterangepicker.css" />
+<div class="row">
+    <div class="col-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body">
+                <div class="card-title" style="text-transform: unset;">
+                    <div class="row">
+                        <div class="col-8">
+                            <h4>Report of: <b>@ViewBag.SortedName</b></h4>
+                        </div>
+                        <div class="col-4">
+                            <form class="form-inline" method="post">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="staticEmail2" class="mr-2">Search</label>
+                                    <input type="text" class="form-control" name="sort" placeholder="Select Date" />
+                                </div>
+                                <button type="submit" class="btn btn-warning mb-2 bg-sunny-morning">Submit</button>
+                            </form>
+                        </div>
+                    </div>
 
-<h2>Reports</h2>
+                </div>
+                <table id="myTable" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Trip ID</th>
+                            <th>Date of Invoice</th>
+                            <th>Client Name</th>
+                            <th>Total Amount</th>
+                            <th style="width: 20px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 1;
+                            double TotalAmount = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            TotalAmount += item.GrandTotal;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TripID)
+                                </td>
+                                <td>
+                                    @item.DateOfInvoice.ToLongDateString()<br />
+                                    <span class="text-black-50">@item.DateOfInvoice.ToString("h:mm tt")</span>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ClientName)
+                                </td>
+                                <td>
+                                    @item.GrandTotal.ToString("C")
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ViewTrip", "Home", new { id = item.TripID })" class="text-primary">
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+                <h2 class="text-right">
+                    Grand Total: @TotalAmount.ToString("C")
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="~/Content/Plugins/moment.js"></script>
+    <script type="text/javascript" src="~/Content/Plugins/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(function() {
+        $('input[name="sort"]').daterangepicker({
+            singleDatePicker: false,
+            showDropdowns: true,
+            minYear: 2000,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            opens: 'center',
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+    });
+    </script>
+}
 
