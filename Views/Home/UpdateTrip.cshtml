@@ -284,7 +284,9 @@
                     <input type="hidden" name="" value="0" id="rph">
                 </div>
                 <div class="col-6">
-                    <a href="@Url.Action("DeleteTrip", new { id = Model.TripID })" class="btn btn-danger" id="deleteTrip">Delete Trip</a>
+                    <button type="button" class="btn btn-danger" onclick="RedirectToDelete('@Url.Action("DeleteTrip", new { id = Model.TripID })');">
+                        Delete Trip
+                    </button>
                 </div>
                 <div class="card-footer">
                     <div class="text-center col-12">
@@ -305,7 +307,12 @@
     <script type="text/javascript" src="~/Content/Plugins/daterangepicker.js"></script>
 
     <script>
-
+        function RedirectToDelete(URL) {
+            var r = confirm("Are you sure you want to delete?");
+            if (r == true) {
+               window.location.href = URL;
+            }
+        }
         // Date functions
         $(document).ready(function () {
             // Initializing datepicker
@@ -381,7 +388,6 @@
                     $('#DropKm').val() - $('#PickupKm').val() + ' kms'
                 );
             }
-
 
             // Calculate night charges
             function nightCharges() {
