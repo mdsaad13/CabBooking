@@ -62,15 +62,58 @@
                 border: 1px solid grey;
                 padding: 5px
             }
+
+        button {
+            position: relative;
+            transition: color 0.15s,background-color 0.15s,border-color 0.15s,box-shadow 0.15s;
+            font-size: .8rem;
+            background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%) !important;
+            outline: none !important;
+            color: #212529;
+            background-color: #f7b924;
+            border-color: #f7b924;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
+
+            button:hover {
+                box-shadow: 0px 0 20px rgb(252, 169, 127);
+                color: #495057;
+                text-decoration: none;
+            }
+
+            button:active {
+                color: #212529;
+                background-color: #e0a008;
+                outline: rgb(73, 80, 87) auto 5px !important;
+            }
+
+        @@media print {
+
+            button,
+            .no-print {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div>
+            <button type="button" style="width:20%" onclick="window.print()" id="button">Print</button>
+        </div>
         <div style="padding:5px 0">
-            <div style="text-align:center">
+            <div style="text-align: center ">
                 <h1>@ViewBag.SoftwareName</h1>
-                <p>SURANA COLLEGE<BR />BANGALORE - 560 004</p>
+                <p>@Html.Raw(ViewBag.Address)</p>
             </div>
         </div>
         <div style="background:#e0e0e0;padding: 1px;"></div>
@@ -218,6 +261,9 @@
         </table>
         <br />
     </div>
+    <script>
+        document.getElementById("button").click();
+    </script>
 </body>
 
 </html>

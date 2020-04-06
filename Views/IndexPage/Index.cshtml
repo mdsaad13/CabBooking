@@ -1,15 +1,5 @@
 ﻿@{
     Layout = null;
-    ViewBag.SoftwareName = "Cab Booking";
-    ViewBag.Name = "Farjam Zafar";
-    ViewBag.Email = "farjamzafar@gmail.com";
-    ViewBag.Mobile = "+91 78921 03400";
-    ViewBag.Address = "16, S End Rd, Basavanagudi, Bengaluru, Karnataka 560004";
-
-    ViewData["twitter"] = "";
-    ViewData["facebook"] = "";
-    ViewData["instagram"] = "";
-    ViewData["linkedin"] = "";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +41,7 @@
                 <a href="@ViewData["twitter"]" class="twitter"><i class="icofont-twitter"></i></a>
                 <a href="@ViewData["facebook"]" class="facebook"><i class="icofont-facebook"></i></a>
                 <a href="@ViewData["instagram"]" class="instagram"><i class="icofont-instagram"></i></a>
-                <a href="@ViewData["linkedin"]" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+                <a href="@ViewData["linkedin"]" class="linkedin"><i class="icofont-linkedin"></i></a>
             </div>
         </div>
     </section>
@@ -389,15 +379,15 @@
 
                     <div class="col-xl-4 col-lg-4 col-md-6" data-aos="fade-up">
                         <div class="member">
-                            <div class="pic"><img src="~/Content/IndexPageAssets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                            <div class="pic"><img src="@ViewBag.ImgUrl" class="img-fluid" alt=""></div>
                             <div class="member-info">
                                 <h4>@ViewBag.Name</h4>
                                 <span>Chief Executive Officer</span>
                                 <div class="social">
-                                    <a href=""><i class="icofont-twitter"></i></a>
-                                    <a href=""><i class="icofont-facebook"></i></a>
-                                    <a href=""><i class="icofont-instagram"></i></a>
-                                    <a href=""><i class="icofont-linkedin"></i></a>
+                                    <a href="@ViewData["twitter"]"><i class="icofont-twitter"></i></a>
+                                    <a href="@ViewData["facebook"]"><i class="icofont-facebook"></i></a>
+                                    <a href="@ViewData["instagram"]"><i class="icofont-instagram"></i></a>
+                                    <a href="@ViewData["linkedin"]"><i class="icofont-linkedin"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -422,7 +412,7 @@
                         <div class="info-box">
                             <i class="bx bx-map"></i>
                             <h3>Our Address</h3>
-                            <p>@ViewBag.Address</p>
+                            <p>@Html.Raw(ViewBag.Address)</p>
                         </div>
                     </div>
 

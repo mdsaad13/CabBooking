@@ -12,7 +12,7 @@ namespace CabBooking.DAL
         /// <summary>
         /// <b>Connection String</b>
         /// </summary>
-        private readonly SqlConnection Conn = new SqlConnection("Data Source=localhost;Initial Catalog=CabBooking;Integrated Security=True");
+        private readonly SqlConnection Conn = new SqlConnection($"Data Source=localhost;Initial Catalog={SoftwareConfig.DBName};Integrated Security=True");
 
         /// <summary>
         /// <b>param</b> <c>TableName</c><br></br>

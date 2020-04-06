@@ -13,7 +13,7 @@ namespace CabBooking.DAL
         /// <summary>
         /// <b>Connection String</b>
         /// </summary>
-        private readonly SqlConnection Conn = new SqlConnection("Data Source=localhost;Initial Catalog=CabBooking;Integrated Security=True");
+        private readonly SqlConnection Conn = new SqlConnection($"Data Source=localhost;Initial Catalog={SoftwareConfig.DBName};Integrated Security=True");
 
         internal int AddVehicle(VehicleModel model)
         {
@@ -199,6 +199,31 @@ namespace CabBooking.DAL
                 Conn.Close();
             }
             return result;
+        }
+
+        internal void DeleteTrip(int TripID)
+        {
+            try
+            {
+                string query = "DELETE from trip where tripID = @TripID";
+                SqlCommand cmd = new SqlCommand(query, Conn);
+                cmd.Parameters.Add(new SqlParameter("TripID", TripID));
+                Conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                if (rows > 0)
+                {
+                    string query1 = "DELETE from tripdetails where tripID = @TripID";
+                    SqlCommand cmd1 = new SqlCommand(query1, Conn);
+                    cmd1.Parameters.Add(new SqlParameter("TripID", TripID));
+                    cmd1.ExecuteNonQuery();
+                }
+            }
+            catch
+            { }
+            finally
+            {
+                Conn.Close();
+            }
         }
         
         internal bool InsertEnquiry(TripModel tripModel)

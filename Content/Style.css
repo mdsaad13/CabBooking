@@ -24292,3 +24292,12 @@ a.fc-more {
 button:focus {
     outline: rgb(73, 80, 87) auto 5px;
 }
+
+@media print {
+
+    .btn,
+    .app-header,
+    .no-print {
+        display: none !important;
+    }
+}

@@ -13,7 +13,7 @@ namespace CabBooking.DAL
         /*
          * Conn = connection string
          */
-        SqlConnection Conn = new SqlConnection("Data Source=localhost;Initial Catalog=CabBooking;Integrated Security=True");
+        readonly SqlConnection Conn = new SqlConnection($"Data Source=localhost;Initial Catalog={SoftwareConfig.DBName};Integrated Security=True");
 
         public AccountModel Login(string Username, string Password)
         {

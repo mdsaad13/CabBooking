@@ -9,8 +9,15 @@
     <div class="col-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
-                <div class="text-right card-title">
-                    <a href="@Url.Action("AddTrip")" class="btn mr-2 mb-2 btn-warning bg-sunny-morning">Add New Trip</a>
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-info" onclick="window.print()">Print</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="@Url.Action("AddTrip")" class="btn mr-2 mb-2 btn-warning bg-sunny-morning">Add New Trip</a>
+                        </div>
+                    </div>
                 </div>
                 <table id="myTable" class="table table-hover table-striped table-bordered">
                     <thead>

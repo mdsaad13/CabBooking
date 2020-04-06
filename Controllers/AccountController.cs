@@ -11,6 +11,11 @@ namespace CabBooking.Controllers
     public class AccountController : Controller
     {
         // GET: Account
+        public AccountController()
+        {
+            ViewBag.SoftwareName = SoftwareConfig.SoftwareName;
+        }
+
         public ActionResult Login()
         {
             return View();

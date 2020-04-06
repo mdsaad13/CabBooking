@@ -13,6 +13,18 @@ namespace CabBooking.Controllers
         // GET: IndexPage
         public ActionResult Index()
         {
+            ViewBag.SoftwareName = SoftwareConfig.SoftwareName;
+            ViewBag.Name = SoftwareConfig.Name;
+            ViewBag.Email = SoftwareConfig.Email;
+            ViewBag.Mobile = SoftwareConfig.Mobile;
+            ViewBag.ImgUrl = SoftwareConfig.ImgUrl;
+            ViewBag.Address = SoftwareConfig.Address;
+
+            foreach (var item in SoftwareConfig.SocialMediaLinks)
+            {
+                ViewData[item.Name] = item.URL;
+            }
+
             return View();
         }
         

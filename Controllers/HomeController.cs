@@ -13,7 +13,7 @@ namespace CabBooking.Controllers
     {
         public HomeController()
         {
-            ViewBag.SoftwareName = "Cab Booking";
+            ViewBag.SoftwareName = SoftwareConfig.SoftwareName;
         }
 
         public ActionResult Index()
@@ -140,20 +140,20 @@ namespace CabBooking.Controllers
             tripModel.Status = 1;
             tripModel.DateOfBooking = DateTime.Now;
 
-            DbUtil db = new DbUtil();
-            if (db.InsertTrip(tripModel))
+            DbUtil dbUtil = new DbUtil();
+            if (dbUtil.InsertTrip(tripModel))
             {
                 if (DeleteEnqAction)
                 {
-                    DbUtil dbUtil = new DbUtil();
                     dbUtil.DeleteEnquiry(EnqID);
                 }
-                RedirectToAction("PendingTrips");
+                return RedirectToAction("PendingTrips");
             }
             else
             {
                 Session["Notification"] = 1;
             }
+            ViewBag.Vehicals = new SelectList(dbUtil.GetVehicles(), "vehicleID", "regno");
             return View();
         }
         
@@ -164,6 +164,14 @@ namespace CabBooking.Controllers
             TripModel tripModel = dbUtil.GetTripByID(id);
             ViewBag.Vehicals = new SelectList(dbUtil.GetVehicles(), "vehicleID", "regno");
             return View(tripModel);
+        }
+        
+        [HttpGet]
+        public ActionResult DeleteTrip(int id)
+        {
+            DbUtil dbUtil = new DbUtil();
+            dbUtil.DeleteTrip(id);
+            return RedirectToAction("PendingTrips");
         }
 
         [ValidateAntiForgeryToken]
@@ -177,7 +185,7 @@ namespace CabBooking.Controllers
 
             if (dbUtil.Updatetrip(tripModel))
             {
-                RedirectToAction("CompletedTrips");
+                return RedirectToAction("CompletedTrips");
             }
             else
             {
@@ -224,6 +232,7 @@ namespace CabBooking.Controllers
             DbUtil dbUtil = new DbUtil();
             TripModel tripModel = dbUtil.GetTripByID(id);
             ViewBag.VehicleDetails = dbUtil.GetVehicleByID(tripModel.VehicleID);
+            ViewBag.Address = SoftwareConfig.Address;
             return View(tripModel);
         }
 
