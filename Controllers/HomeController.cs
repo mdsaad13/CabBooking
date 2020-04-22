@@ -191,6 +191,7 @@ namespace CabBooking.Controllers
             {
                 Session["Notification"] = 1;
             }
+            ViewBag.Vehicals = new SelectList(dbUtil.GetVehicles(), "vehicleID", "regno");
             return View();
         }
 

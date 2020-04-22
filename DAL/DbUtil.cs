@@ -232,7 +232,7 @@ namespace CabBooking.DAL
             try
             {
                 string query = "INSERT INTO enquirys (name, mobile, pickuploc, droploc, email, datetime, status)" +
-                        " VALUES (@name, @mobile, @pickuploc, @droploc, @email, @datetime, @status)";
+                        " VALUES (@name, @mobile, @pickuploc, @droploc, @email, @datetime, 0)";
                 SqlCommand cmd = new SqlCommand(query, Conn);
 
                 cmd.Parameters.Add(new SqlParameter("name", tripModel.ClientName));
@@ -241,7 +241,7 @@ namespace CabBooking.DAL
                 cmd.Parameters.Add(new SqlParameter("pickuploc", tripModel.PickupLoc));
                 cmd.Parameters.Add(new SqlParameter("droploc", tripModel.DropLoc));
                 cmd.Parameters.Add(new SqlParameter("datetime", tripModel.DateOfBooking));
-                cmd.Parameters.Add(new SqlParameter("status", 0));
+                //cmd.Parameters.Add(new SqlParameter("status", 0));
 
                 Conn.Open();
 
